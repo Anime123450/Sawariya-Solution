@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Sawariya Solution CMS</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <!-- Login -->
+  <div class="login-wrap" id="loginWrap">
+    <form class="login-card" id="loginForm">
+      <div class="lmark" id="loginMark"></div>
+      <h1>Sawariya CMS</h1>
+      <p class="sub">Sign in to manage your website content</p>
+      <div class="field"><label for="lg-user">Username</label><input id="lg-user" value="admin" required></div>
+      <div class="field"><label for="lg-pass">Password</label><input id="lg-pass" type="password" value="admin" required></div>
+      <button class="btn btn-peacock btn-lg" type="submit" style="width:100%;justify-content:center">Sign in</button>
+      <p class="login-hint">Demo · username <strong>admin</strong> · password <strong>admin</strong></p>
+    </form>
+  </div>
+
+  <!-- Shell -->
+  <div class="admin-shell" id="shell" style="display:none">
+    <div class="admin-backdrop" id="backdrop"></div>
+    <aside class="admin-side" id="side">
+      <div class="side-brand"><span id="sideMark"></span><span><b>Sawariya</b><span>CMS PANEL</span></span></div>
+      <nav class="side-nav" id="sideNav"></nav>
+      <div class="side-foot"><button class="logout" id="logoutBtn"></button></div>
+    </aside>
+    <div class="admin-main">
+      <div class="admin-top">
+        <button class="burger" id="burger"></button>
+        <div><h2 id="viewTitle">Dashboard</h2><div class="muted" id="viewSub">Overview of your site</div></div>
+        <div class="spacer"></div>
+        <a class="btn btn-ghost" href="../index.html" target="_blank" style="padding:.6rem 1rem">View site</a>
+        <div class="pill-user"><span class="av">A</span> Admin</div>
+      </div>
+      <div class="admin-view" id="view"></div>
+    </div>
+  </div>
+
+  <!-- CRUD modal -->
+  <div class="modal-root" id="formModal">
+    <div class="veil" data-close></div>
+    <div class="modal-card" style="max-width:720px">
+      <button class="modal-close" data-close aria-label="Close"></button>
+      <div class="mhead"><span class="eyebrow" id="formKicker">Edit</span><h2 id="formTitle" style="margin-top:.5rem">Item</h2></div>
+      <div class="mbody"><form id="crudForm" onsubmit="return false;"><div id="formFields"></div><button class="btn btn-peacock btn-lg" type="submit" style="width:100%;justify-content:center;margin-top:.4rem">Save</button></form></div>
+    </div>
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers — Join Sawariya Solution | Vadodara</title>
+  <meta name="description" content="Open roles at Sawariya Solution in Vadodara — developers, designers, and marketers. Build software for real businesses with a team that has your back.">
+  <link rel="canonical" href="https://sawariyasolution.com/careers.html">
+  <meta property="og:title" content="Careers — Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="careers">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Careers</span></nav>
+        <span class="eyebrow">Join the team</span>
+        <h1 style="margin-top:1rem">Do work you can point to.</h1>
+        <p>We're a small Vadodara studio building software that real businesses depend on. If you like ownership, fast feedback, and shipping things that matter — you'll fit right in.</p>
+        <div class="hero-actions" style="margin-top:1.6rem"><a class="btn btn-peacock" href="#openings">See open roles</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head center"><span class="eyebrow">Why work here</span><h2>A team that has your back</h2></div>
+        <div class="grid cols-4" id="perks"></div>
+      </div>
+    </section>
+
+    <section class="section bg-porcelain" id="openings" style="scroll-margin-top:90px">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Open positions</span><h2>Current openings</h2><p>Don't see your role? Send us your portfolio anyway — good people are always worth a conversation.</p></div>
+        <div class="tabs" id="jobTabs"></div>
+        <div class="grid" id="jobList" style="gap:1rem"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="row">
+            <div><span class="eyebrow">No matching role?</span><h2 style="margin-top:1rem">Pitch us anyway.</h2><p>We hire for attitude as much as skill. Tell us what you're great at and how you'd help.</p></div>
+            <div class="acts"><button class="btn btn-peacock btn-lg" data-apply="General application">Send open application</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <div class="modal-root" id="applyModal">
+    <div class="veil" data-close></div>
+    <div class="modal-card" style="max-width:560px">
+      <button class="modal-close" data-close aria-label="Close"></button>
+      <div class="mhead"><span class="eyebrow">Apply</span><h2 id="applyTitle" style="margin-top:.6rem">Apply for this role</h2></div>
+      <div class="mbody">
+        <form id="applyForm" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="field"><label for="ap-name">Full name</label><input id="ap-name" required></div>
+            <div class="field"><label for="ap-email">Email</label><input id="ap-email" type="email" required></div>
+            <div class="field"><label for="ap-phone">Phone</label><input id="ap-phone" type="tel" required></div>
+            <div class="field"><label for="ap-role">Role</label><input id="ap-role" readonly></div>
+          </div>
+          <div class="field"><label for="ap-resume">Resume / portfolio link</label><input id="ap-resume" placeholder="Paste a link, or mention you'll email it"></div>
+          <div class="field"><label for="ap-msg">Why you?</label><textarea id="ap-msg" placeholder="A few lines on why you're a fit"></textarea></div>
+          <button class="btn btn-peacock btn-lg" type="submit" style="width:100%;justify-content:center">Submit application</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA;
+      const perks = [
+        ["briefcase", "Real ownership", "You own features end to end — not tickets in a queue."],
+        ["sparkle", "Fast feedback", "Short cycles and direct access to the people deciding."],
+        ["compass", "Learn broadly", "Touch web, mobile, cloud, and clients across industries."],
+        ["check", "Local & stable", "On-site in Vadodara with a steady pipeline of work."],
+      ];
+      SS.mount("perks", perks.map((p, i) => `<div class="card service-card reveal" data-d="${i % 4}"><span class="ico">${SS.icon(p[0])}</span><h3 style="font-size:1.2rem">${p[1]}</h3><p style="font-size:var(--fs-sm)">${p[2]}</p></div>`).join(""));
+
+      const jobCard = (j, i) => `
+        <div class="card job-card reveal" data-d="${i % 3}">
+          <div class="jinfo"><h3>${j.title}</h3><div class="tags"><span class="jtag">${j.department}</span><span class="jtag">${j.location}</span><span class="jtag">${j.type}</span><span class="jtag">${j.exp}</span></div></div>
+          <button class="btn btn-primary" data-apply="${j.title}">Apply now</button>
+        </div>`;
+      const depts = ["All", ...new Set(D.jobs.map(j => j.department))];
+      const list = document.getElementById("jobList");
+      const render = (d) => {
+        const arr = d === "All" ? D.jobs : D.jobs.filter(j => j.department === d);
+        list.innerHTML = arr.map(jobCard).join("");
+        document.querySelectorAll("#jobList .reveal").forEach(e => e.classList.add("in"));
+      };
+      SS.mount("jobTabs", depts.map((c, i) => `<button class="tab${i === 0 ? " active" : ""}" data-dept="${c}">${c}</button>`).join(""));
+      document.getElementById("jobTabs").addEventListener("click", (e) => { const b = e.target.closest(".tab"); if (!b) return; document.querySelectorAll("#jobTabs .tab").forEach(t => t.classList.remove("active")); b.classList.add("active"); render(b.dataset.dept); });
+      render("All");
+
+      // Apply modal
+      const modal = document.getElementById("applyModal");
+      const close = () => { modal.classList.remove("open"); document.body.style.overflow = ""; };
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("[data-apply]");
+        if (a) { document.getElementById("applyTitle").textContent = "Apply — " + a.dataset.apply; document.getElementById("ap-role").value = a.dataset.apply; modal.classList.add("open"); document.body.style.overflow = "hidden"; return; }
+        if (e.target.closest("[data-close]")) close();
+      });
+      document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+      document.getElementById("applyForm").addEventListener("submit", () => { close(); SS.toast("Application received — we'll be in touch."); });
+    };
+  </script>
+</body>
+</html>

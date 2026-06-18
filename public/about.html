@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Sawariya Solution — IT studio in Vadodara</title>
+  <meta name="description" content="Sawariya Solution is a Vadodara IT studio building web, software, mobile, and cloud products. Meet the team behind 40+ growing businesses.">
+  <link rel="canonical" href="https://sawariyasolution.com/about.html">
+  <meta property="og:title" content="About Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>About</span></nav>
+        <span class="eyebrow">Who we are</span>
+        <h1 style="margin-top:1rem">The IT team behind growing businesses.</h1>
+        <p>Sawariya Solution started in Vadodara with one idea: a business shouldn't need five vendors to run its technology. Today we build web, software, mobile, and cloud products for 40+ clients across India.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">Our story</span>
+            <h2 style="margin:1rem 0 1.2rem">From Vadodara, for the world</h2>
+            <p style="margin-bottom:1rem">The name <strong>Sawariya</strong> belongs to Lord Krishna, and his peacock feather is our mark — a reminder to do careful, beautiful work. We carry that into every project: clean code, honest timelines, and software that keeps working long after launch.</p>
+            <p>What began as a handful of websites has grown into a full studio — hospitals, hotels, retailers, and security firms all run on systems we built and still support.</p>
+            <div class="hero-actions" style="margin-top:1.8rem">
+              <a class="btn btn-primary" href="contact.html">Work with us</a>
+              <a class="btn btn-ghost" href="portfolio.html">See the work</a>
+            </div>
+          </div>
+          <div class="split-media reveal" data-d="2" id="aboutMedia"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="grid cols-2">
+          <div class="card reveal">
+            <span class="chip">Our mission</span>
+            <h3 style="margin:1rem 0 .6rem">Make good technology reachable</h3>
+            <p>Give every growing business access to the kind of software big companies take for granted — without the big-company price or the jargon.</p>
+          </div>
+          <div class="card reveal" data-d="2">
+            <span class="chip">Our vision</span>
+            <h3 style="margin:1rem 0 .6rem">The default IT partner in Gujarat</h3>
+            <p>To be the first name a business thinks of when it needs anything built, hosted, or marketed online — and to earn that through results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-porcelain">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">What we believe</span>
+          <h2>Principles we don't bend on</h2>
+        </div>
+        <div class="grid cols-4" id="aboutValues"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid cols-4" id="aboutStats"></div>
+      </div>
+    </section>
+
+    <section class="section bg-ink">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">How we work</span>
+          <h2>Showing, not telling</h2>
+        </div>
+        <div class="grid cols-4" id="aboutProcess"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="row">
+            <div><span class="eyebrow">Join us or hire us</span><h2 style="margin-top:1rem">Let's build something good.</h2><p>Whether you have a project or want to join the team, we'd love to hear from you.</p></div>
+            <div class="acts"><a class="btn btn-peacock btn-lg" href="contact.html">Start a project</a><a class="btn btn-on-ink btn-lg" href="careers.html">View careers</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA;
+      SS.mount("aboutMedia", SS.photo(D.images.aboutStory, "Sawariya Solution team"));
+      SS.mount("aboutValues", D.values.map((v, i) => `<div class="card reveal" data-d="${i % 4}"><span class="vn" style="font-family:var(--font-mono);color:var(--brand);font-weight:700">0${i + 1}</span><h3 style="margin:.6rem 0 .5rem">${v.title}</h3><p style="font-size:var(--fs-sm)">${v.body}</p></div>`).join(""));
+      SS.mount("aboutStats", D.milestones.map((m, i) => SS.statCard(m, i % 4)).join(""));
+      SS.mount("aboutProcess", D.process.map((p, i) => `<div class="reveal" data-d="${i % 4}"><div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--brand-soft)">${p.step}</div><h3 style="color:#fff;margin:.6rem 0 .5rem">${p.title}</h3><p>${p.body}</p></div>`).join(""));
+    };
+  </script>
+</body>
+</html>

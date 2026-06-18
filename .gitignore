@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.vite/
+
+# logs & os junk
+*.log
+.DS_Store
+Thumbs.db
+
+# local screenshot / review artifacts (not part of the deliverable)
+.review/
+.shots/
+.live/
+
+# misc temp
+temp-dir.txt
+
+# ---- Laravel backend ----
+/vendor/
+.env
+.env.backup
+.env.production
+/storage/*.key
+/storage/pail
+/bootstrap/cache/*.php
+/public/build
+/public/hot
+/public/storage
+/.phpunit.result.cache
+auth.json
+/.fleet
+/.idea
+/.vscode

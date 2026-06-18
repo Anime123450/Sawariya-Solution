@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Sawariya Solution — Vadodara IT Studio</title>
+  <meta name="description" content="Talk to Sawariya Solution in Vadodara. Call +91 70160 64136, email us, or send a project enquiry. We reply within one business day.">
+  <link rel="canonical" href="https://sawariyasolution.com/contact.html">
+  <meta property="og:title" content="Contact — Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Contact</span></nav>
+        <span class="eyebrow">Let's talk</span>
+        <h1 style="margin-top:1rem">Tell us what you're building.</h1>
+        <p>One message is all it takes. We'll come back within one business day with honest advice and a clear next step — no obligation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="split" style="align-items:start;gap:clamp(2rem,4vw,3.5rem)">
+          <div class="card reveal" style="padding:clamp(1.6rem,3vw,2.4rem)">
+            <h2 style="font-size:1.5rem;margin-bottom:.4rem">Send an enquiry</h2>
+            <p style="margin-bottom:1.6rem;font-size:var(--fs-sm)">Fields marked with * are required.</p>
+            <form id="contactForm" onsubmit="return false;">
+              <div class="form-grid">
+                <div class="field"><label for="c-name">Full name *</label><input id="c-name" required></div>
+                <div class="field"><label for="c-phone">Phone *</label><input id="c-phone" type="tel" required></div>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label for="c-email">Email *</label><input id="c-email" type="email" required></div>
+                <div class="field"><label for="c-service">What do you need?</label><select id="c-service"></select></div>
+              </div>
+              <div class="field"><label for="c-msg">Project details *</label><textarea id="c-msg" placeholder="A budget range and timeline help us reply usefully." required></textarea></div>
+              <button class="btn btn-peacock btn-lg" type="submit" style="width:100%;justify-content:center">Send enquiry</button>
+            </form>
+          </div>
+
+          <div class="reveal" data-d="2">
+            <div id="contactCards" class="grid" style="gap:1rem"></div>
+            <div style="margin-top:1.4rem">
+              <h3 style="font-size:1.1rem;margin-bottom:.9rem">Follow along</h3>
+              <div class="socials" id="contactSocials" style="margin-top:0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" style="padding-top:0">
+      <div class="container">
+        <div class="split-media reveal" style="aspect-ratio:auto;height:380px;box-shadow:var(--shadow-md)">
+          <iframe title="Sawariya Solution location" width="100%" height="100%" style="border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Siddheshwar%20Hallmark%20Ajwa%20Road%20Vadodara&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-porcelain">
+      <div class="container" style="max-width:840px">
+        <div class="section-head center"><span class="eyebrow">Good to know</span><h2>Common questions</h2></div>
+        <div class="accordion" id="faq"></div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA, c = D.contact;
+      // service select
+      document.getElementById("c-service").innerHTML =
+        `<option value="">Not sure yet</option>` + D.services.map(s => `<option>${s.title}</option>`).join("") + `<option>A product (CRM, ERP, POS…)</option><option>Something else</option>`;
+
+      // info cards
+      const cards = [
+        ["phoneCall", "Call us", `<a href="tel:${c.phone1.replace(/\s/g, "")}">${c.phone1}</a><br><a href="tel:${c.phone2.replace(/\s/g, "")}">${c.phone2}</a>`],
+        ["mail", "Email us", `<a href="mailto:${c.email1}">${c.email1}</a><br><a href="mailto:${c.email2}">${c.email2}</a>`],
+        ["pin", "Visit us", `<a href="${c.mapsUrl}" target="_blank" rel="noopener">${c.address}</a>`],
+        ["clock", "Office hours", c.hours],
+      ];
+      SS.mount("contactCards", cards.map((x, i) => `<div class="card" style="display:flex;gap:1rem;align-items:flex-start;padding:1.3rem 1.4rem"><span class="ico" style="width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--peacock-soft);color:var(--brand);flex:none">${SS.icon(x[0])}</span><div><h3 style="font-size:1.05rem;margin-bottom:.25rem">${x[1]}</h3><div class="muted" style="font-size:var(--fs-sm);line-height:1.6">${x[2]}</div></div></div>`).join(""));
+      // size info-card icons
+      document.querySelectorAll("#contactCards .ico svg").forEach(s => { s.style.width = "22px"; s.style.height = "22px"; });
+
+      SS.mount("contactSocials", D.socials.map(x => `<a href="${x.url}" target="_blank" rel="noopener" aria-label="${x.platform}">${SS.icon(x.icon)}</a>`).join(""));
+
+      // FAQ
+      const faqs = [
+        ["How soon can you start?", "Most projects kick off within a week of agreeing scope. Urgent fixes we can often pick up the same day."],
+        ["How do you price work?", "Fixed price for well-defined projects, monthly retainers for ongoing work. You'll always see the number before we start."],
+        ["Do you support what you build?", "Yes. We don't disappear at launch — maintenance and 24/7 support are part of how we work."],
+        ["Can you take over an existing project?", "Often, yes. Send us what you have and we'll tell you honestly whether to continue it or rebuild."],
+        ["Do you work with clients outside Vadodara?", "We work with clients across India and beyond. Most of our collaboration happens online anyway."],
+      ];
+      SS.mount("faq", faqs.map(f => `<div class="acc-item"><button class="acc-head">${f[0]}<span class="pm">${SS.icon("plus")}</span></button><div class="acc-body"><div class="acc-body-inner">${f[1]}</div></div></div>`).join(""));
+      SS.initAccordions();
+
+      document.getElementById("contactForm").addEventListener("submit", function () { this.reset(); SS.toast("Thanks — we'll reply within one business day."); });
+    };
+  </script>
+</body>
+</html>

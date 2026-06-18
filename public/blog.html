@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Plain-language tech notes | Sawariya Solution</title>
+  <meta name="description" content="Practical, jargon-free reads for business owners making technology decisions — from the team at Sawariya Solution.">
+  <link rel="canonical" href="https://sawariyasolution.com/blog.html">
+  <meta property="og:title" content="Blog — Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="blog">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Blog</span></nav>
+        <span class="eyebrow">From the blog</span>
+        <h1 style="margin-top:1rem">Plain-language tech notes.</h1>
+        <p>No jargon, no sales pitch — practical reads to help you make confident technology decisions.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="blogFeatured" style="margin-bottom:clamp(2rem,5vw,3.5rem)"></div>
+        <div class="tabs" id="blogTabs"></div>
+        <div class="grid cols-3" id="blogGrid"></div>
+      </div>
+    </section>
+
+    <section class="section bg-ink">
+      <div class="container">
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:center">
+          <div><span class="eyebrow">Stay in the loop</span><h2 style="margin-top:1rem;color:#fff">One useful email a month.</h2><p style="max-width:42ch">Tech tips for business owners. No spam, unsubscribe anytime.</p></div>
+          <form class="newsletter" style="min-width:320px;flex:1;max-width:440px" onsubmit="SS.toast('Subscribed — thanks!');this.reset();return false;">
+            <input type="email" placeholder="you@company.com" aria-label="Email" required>
+            <button type="submit" class="news-send" aria-label="Subscribe"></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <div class="modal-root" id="blogModal">
+    <div class="veil" data-close></div>
+    <article class="modal-card">
+      <button class="modal-close" data-close aria-label="Close"></button>
+      <div class="modal-hero" id="bmHero"></div>
+      <div class="mhead"><div class="blog-card meta" id="bmMeta" style="padding:0"></div><h2 id="bmTitle" style="margin-top:.6rem"></h2></div>
+      <div class="mbody" id="bmBody"></div>
+    </article>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    // Real short article bodies, keyed by slug (CMS would replace these)
+    const ARTICLES = {
+      "erp-for-smb": `<p>A spreadsheet is the right tool right up until it isn't. The signs are usually the same: two people overwrite each other's numbers, a file gets emailed around in five versions, and nobody is sure which one is correct.</p><h4>When to make the switch</h4><p>If your stock, billing, and accounts live in separate sheets — and someone spends an afternoon every week reconciling them — an ERP will pay for itself fast. The goal isn't fancy software; it's a single source of truth your whole team trusts.</p><p>Start small. You don't need every module on day one. Pick the one workflow that hurts most, get it running, then expand.</p>`,
+      "website-speed": `<p>Most slow websites share the same handful of problems, and none of them require a rebuild to fix.</p><h4>The usual suspects</h4><p>Oversized images are the number-one cause — a 4&nbsp;MB photo where a 200&nbsp;KB one would look identical. After that: too many third-party scripts, no caching, and render-blocking fonts.</p><p>Fix those four and most sites go from sluggish to snappy. Speed isn't just nice to have — it directly affects how many visitors stay and buy.</p>`,
+      "local-seo-vadodara": `<p>When someone nearby searches for what you sell, you want to be the first result. That's local SEO, and for most businesses in Gujarat it matters more than ranking nationally.</p><h4>The fundamentals</h4><p>Claim and complete your Google Business Profile, keep your name, address, and phone identical everywhere online, and collect honest reviews. These three things move the needle more than anything clever.</p><p>Then add pages that answer the questions locals actually type. Specific beats generic every time.</p>`,
+      "app-or-website": `<p>Founders ask us this constantly: should the first build be an app or a website? The honest answer is almost always a website first.</p><h4>Why website usually wins</h4><p>A website reaches everyone instantly, costs less, and is far easier to change. An app makes sense once you have repeat users who'd benefit from notifications, offline access, or device features.</p><p>Spend your first rupee where it reaches the most people. You can always build the app once demand is proven.</p>`,
+    };
+
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA;
+      const fmt = (d) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+
+      // Featured = newest
+      const f = D.blogs[0];
+      document.getElementById("blogFeatured").innerHTML = `
+        <article class="card reveal" data-slug="${f.slug}" style="display:grid;grid-template-columns:1.1fr 1fr;gap:0;padding:0;cursor:pointer;overflow:hidden">
+          <div class="ph" style="background:var(--peacock-soft);min-height:280px;position:relative;overflow:hidden">${SS.photo(f.image, f.title)}</div>
+          <div style="padding:clamp(1.6rem,3vw,2.6rem);display:flex;flex-direction:column;justify-content:center">
+            <span class="chip">Featured</span>
+            <div class="meta" style="font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:1rem 0 .6rem">${f.category} · ${fmt(f.date)} · ${f.read} read</div>
+            <h2 style="margin-bottom:.8rem">${f.title}</h2>
+            <p style="margin-bottom:1.3rem">${f.excerpt}</p>
+            <span class="btn-link">Read article <span class="arr"></span></span>
+          </div>
+        </article>`;
+
+      const cats = ["All", ...new Set(D.blogs.map(b => b.category))];
+      const grid = document.getElementById("blogGrid");
+      const render = (cat) => {
+        const list = (cat === "All" ? D.blogs : D.blogs.filter(b => b.category === cat));
+        grid.innerHTML = list.map((x, i) => SS.blogCard(x, i % 3)).join("");
+        document.querySelectorAll("#blogGrid .reveal").forEach(e => e.classList.add("in"));
+        document.querySelectorAll(".arr:empty").forEach(e => e.innerHTML = SS.icon("arrow"));
+      };
+      SS.mount("blogTabs", cats.map((c, i) => `<button class="tab${i === 0 ? " active" : ""}" data-cat="${c}">${c}</button>`).join(""));
+      document.getElementById("blogTabs").addEventListener("click", (e) => {
+        const b = e.target.closest(".tab"); if (!b) return;
+        document.querySelectorAll("#blogTabs .tab").forEach(t => t.classList.remove("active"));
+        b.classList.add("active"); render(b.dataset.cat);
+      });
+      render("All");
+
+      // Modal reader
+      const modal = document.getElementById("blogModal");
+      const open = (slug) => {
+        const b = D.blogs.find(x => x.slug === slug); if (!b) return;
+        document.getElementById("bmHero").innerHTML = SS.photo(b.image, b.title);
+        document.getElementById("bmMeta").innerHTML = `<span>${b.category}</span><span class="dot"></span><span>${fmt(b.date)}</span><span class="dot"></span><span>${b.read} read</span><span class="dot"></span><span>By ${b.author}</span>`;
+        document.getElementById("bmTitle").textContent = b.title;
+        document.getElementById("bmBody").innerHTML = (ARTICLES[b.slug] || `<p>${b.excerpt}</p>`) + `<p style="margin-top:1.4rem"><a class="btn btn-primary" href="contact.html">Talk to us about this</a></p>`;
+        modal.classList.add("open"); document.body.style.overflow = "hidden";
+        location.hash = b.slug;
+      };
+      const close = () => { modal.classList.remove("open"); document.body.style.overflow = ""; if (location.hash) history.replaceState(null, "", location.pathname); };
+      document.addEventListener("click", (e) => {
+        const card = e.target.closest("[data-slug]"); if (card) { open(card.dataset.slug); return; }
+        const link = e.target.closest(".blog-card[href]"); if (link && link.hash) { e.preventDefault(); open(link.hash.slice(1)); }
+        if (e.target.closest("[data-close]")) close();
+      });
+      document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+      if (location.hash) open(location.hash.slice(1));
+    };
+  </script>
+</body>
+</html>

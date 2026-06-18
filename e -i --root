@@ -1,0 +1,99 @@
+[33mcommit 794fdb303e0b2588658a526b3e0616e9d909b710[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 16:17:41 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 16:17:41 2026 +0530
+
+    Add Laravel + MySQL backend (database-backed CMS)
+    
+    Backend
+    - Laravel app serving the existing static site from public/ + a REST API
+    - Flexible content model: entries (list collections) + singletons tables
+    - Sanctum token auth; admin user seeded (admin / admin)
+    - Endpoints: GET /api/content, /api/login, CRUD /api/collections/{c},
+      /api/singletons/{key}, POST /api/uploads (image upload)
+    - ContentSeeder loads the exact site content (generated from data.js)
+    
+    Frontend wiring
+    - Public site (ui.js) fetches /api/content and overlays it onto the bundled
+      SS_DATA defaults, with graceful fallback when the API is offline
+    - Admin (admin.js) rewritten to use the API: real login, CRUD by id,
+      singleton edits, and image uploads with live preview
+    
+    Docs
+    - README rewritten for the full stack + setup/runbook
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit 0aca504c89afb8adf8c04a2913948086d0eecaf5[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 12:38:23 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 12:38:23 2026 +0530
+
+    Admin: fix form width, two-column layouts, live image previews
+    
+    - Single-record forms (settings/contact/footer) now span a wide, centered
+      panel in two columns instead of a narrow left-aligned 760px (no more
+      wasted space on the right)
+    - Edit modal widened and laid out in two columns; long fields full-width
+    - Image / logo / photo / avatar fields show a live thumbnail preview that
+      updates as you type
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit 484882fc53ccabb02aa405b7c315003b62925d09[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 12:16:35 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 12:16:35 2026 +0530
+
+    Admin: hide sidebar scrollbar, compact nav, visual polish
+    
+    - Hide the left scrollbar (scrollbar-width/webkit) + tighten nav spacing so all groups fit
+    - Sidebar gradient background; brighter active state
+    - Dashboard KPI cards: gradient icon fill, gradient numbers, accent bar
+    - Subtle table-header tint and top-bar shadow
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit c01362d7bcdcc0d7f5306ad9d31c356694e56afc[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 11:55:39 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 11:55:39 2026 +0530
+
+    Swap two images for stronger content match
+    
+    - Portfolio/clients "Dr Apple Healthcare" -> doctor consultation (was a generic laptop)
+    - Service "Cloud & Hosting" -> server racks (was a desk workspace)
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit ca3355895b1228959c49e85bbf07a9ffa38a42c4[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 11:27:06 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 11:27:06 2026 +0530
+
+    Rewrite README — badges, icons, clearer sections
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit 3e22e66f056c6c3a1d8d51db89e9187697f16830[m
+Author:     Animesh Sharma <aa1281887@gmail.com>
+AuthorDate: Thu Jun 18 11:23:47 2026 +0530
+Commit:     Animesh Sharma <aa1281887@gmail.com>
+CommitDate: Thu Jun 18 11:23:47 2026 +0530
+
+    Sawariya Solution website — redesigned marketing site + CMS admin
+    
+    - Full-width rotating hero banner (no logo), data-driven slides
+    - 1280px content shell; full-bleed banner/section backgrounds
+    - Real partner brand logos + image-based client tiles
+    - Local curated imagery (banner, services, products, portfolio, blog, people)
+    - Compact capsule stat cards (hero strip + milestones)
+    - Testimonials with photo avatars
+    - Schema-driven admin CMS (localStorage) with live overlay onto the public site
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Web, Software, Mobile, Cloud & Marketing | Sawariya Solution</title>
+  <meta name="description" content="Web development, software & ERP/CRM, mobile apps, cloud & hosting, digital marketing and IT consulting — six services from one accountable team in Vadodara.">
+  <link rel="canonical" href="https://sawariyasolution.com/services.html">
+  <meta property="og:title" content="Services — Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="services">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Services</span></nav>
+        <span class="eyebrow">What we do</span>
+        <h1 style="margin-top:1rem">Everything your business needs to run and grow online.</h1>
+        <p>Six services, one team that owns the outcome. Pick one or let us handle the whole stack — from the first wireframe to round-the-clock support.</p>
+      </div>
+    </section>
+
+<section class="section">
+       <div class="container">
+         <div class="grid cols-3" id="servicesGrid"></div>
+        </div>
+      </section>
+
+    <section class="section bg-porcelain">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">In detail</span>
+          <h2>A closer look at each service</h2>
+        </div>
+        <div id="serviceDetails"></div>
+      </div>
+    </section>
+
+    <section class="section bg-ink">
+      <div class="container">
+        <div class="section-head center"><span class="eyebrow">How we work</span><h2>Showing, not telling</h2></div>
+        <div class="grid cols-4" id="servicesProcess"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="row">
+            <div><span class="eyebrow">Not sure where to start?</span><h2 style="margin-top:1rem">Tell us the problem.</h2><p>Describe what you're trying to fix or build. We'll recommend the right service — even if it's a smaller one than you expected.</p></div>
+            <div class="acts"><a class="btn btn-peacock btn-lg" href="contact.html">Get free advice</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA;
+      SS.mount("servicesGrid", D.services.map((x, i) => SS.serviceCard(x, i, i % 3)).join(""));
+      SS.mount("servicesProcess", D.process.map((p, i) => `<div class="reveal" data-d="${i % 4}"><div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--brand-soft)">${p.step}</div><h3 style="color:#fff;margin:.6rem 0 .5rem">${p.title}</h3><p>${p.body}</p></div>`).join(""));
+      SS.mount("serviceDetails", D.services.map((x, i) => {
+        const media = `<div class="split-media" style="aspect-ratio:4/3">${SS.photo(x.image, x.title)}</div>`;
+        const text = `<div><span class="eyebrow">Service ${1 + i}</span><h2 style="margin:1rem 0 1rem">${x.title}</h2><p style="margin-bottom:1.3rem">${x.full}</p><div>${x.points.map(p => `<div class="check">${SS.icon("check")}<span>${p}</span></div>`).join("")}</div><div style="margin-top:1.6rem"><a class="btn btn-primary" href="contact.html">Request this service</a></div></div>`;
+        const flip = i % 2 === 1;
+        return `<div id="${x.slug}" class="split reveal" style="margin-bottom:clamp(3rem,7vw,6rem);scroll-margin-top:100px">${flip ? media + text : text + media}</div>`;
+      }).join(""));
+    };
+  </script>
+</body>
+</html>

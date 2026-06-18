@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — CRM, ERP, HMS, POS & more | Sawariya Solution</title>
+  <meta name="description" content="Ready-to-run software you can deploy this week: CRM, ERP, Hospital Management, POS billing, HRMS, and School ERP — tailored to your business.">
+  <link rel="canonical" href="https://sawariyasolution.com/products.html">
+  <meta property="og:title" content="Products — Sawariya Solution">
+  <meta name="theme-color" content="#1B45C4">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesque:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="products">
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Products</span></nav>
+        <span class="eyebrow">Ready-to-run software</span>
+        <h1 style="margin-top:1rem">Deploy proven software this week.</h1>
+        <p>Why build from scratch? Our platforms are already running in hospitals, shops, and offices. We tailor them to how you work — then hand over the keys.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tabs" id="productTabs"></div>
+        <div class="grid cols-3" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section bg-porcelain">
+      <div class="container">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">Why buy, not build</span>
+            <h2 style="margin:1rem 0 1.3rem">Faster, cheaper, and already tested</h2>
+            <div id="productWhy"></div>
+            <div style="margin-top:1.6rem"><a class="btn btn-primary" href="contact.html">Book a demo</a></div>
+          </div>
+          <div class="split-media reveal" data-d="2" id="prodMedia"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div class="row">
+            <div><span class="eyebrow">Need something custom?</span><h2 style="margin-top:1rem">We'll build it around you.</h2><p>If none of our products fit exactly, we build bespoke software too. Tell us your workflow and we'll quote it.</p></div>
+            <div class="acts"><a class="btn btn-peacock btn-lg" href="contact.html">Request a demo</a><a class="btn btn-on-ink btn-lg" href="services.html">See custom dev</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    window.SS_PAGE = function () {
+      const D = window.SS_DATA;
+      SS.mount("prodMedia", SS.photo(D.images.productsWhy, "Sawariya product dashboards"));
+      const why = [
+        ["Live in days", "Configure and launch in a week, not the months a custom build takes."],
+        ["Lower cost", "You share the platform cost with every other business that uses it."],
+        ["Already tested", "Real companies use these daily — the bugs were found long ago."],
+        ["Yours to keep", "Branded for you, hosted by us, with training for your team."],
+      ];
+      SS.mount("productWhy", why.map((w, i) => `<div class="check reveal" data-d="${i % 3}" style="padding:.7rem 0">${SS.icon("check")}<div><strong>${w[0]}.</strong> <span class="muted">${w[1]}</span></div></div>`).join(""));
+
+      const cats = ["All", ...new Set(D.products.map(p => p.category))];
+      const grid = document.getElementById("productsGrid");
+      const render = (cat) => {
+        const list = cat === "All" ? D.products : D.products.filter(p => p.category === cat);
+        grid.innerHTML = list.map((x, i) => SS.productCard(x, i % 3)).join("");
+        document.querySelectorAll("#productsGrid .reveal").forEach(e => e.classList.add("in"));
+      };
+      SS.mount("productTabs", cats.map((c, i) => `<button class="tab${i === 0 ? " active" : ""}" data-cat="${c}">${c}</button>`).join(""));
+      document.getElementById("productTabs").addEventListener("click", (e) => {
+        const b = e.target.closest(".tab"); if (!b) return;
+        document.querySelectorAll("#productTabs .tab").forEach(t => t.classList.remove("active"));
+        b.classList.add("active"); render(b.dataset.cat);
+      });
+      render("All");
+    };
+  </script>
+</body>
+</html>
