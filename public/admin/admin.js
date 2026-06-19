@@ -13,8 +13,15 @@
   const ICONS = ["browser", "layers", "phone", "cloud", "megaphone", "compass", "sparkle", "briefcase", "check", "star"];
   const SOCIAL_ICONS = ["facebook", "instagram", "linkedin", "youtube", "whatsapp"];
 
-  /* ---------- API layer ---------- */
-  const API = "/api";
+  /* ---------- API layer ----------
+     The REST API lives on the Laravel server (:8000). When the admin is opened
+     from a static dev server (e.g. VS Code Live Server on :3000) there is no API
+     on that origin, so we call :8000 directly (CORS is allowed). When Laravel
+     serves the admin itself (production, or :8000) we use a same-origin path. */
+  const isStaticDev =
+    (location.hostname === "localhost" || location.hostname === "127.0.0.1") &&
+    location.port && location.port !== "8000";
+  const API = isStaticDev ? location.protocol + "//" + location.hostname + ":8000/api" : "/api";
   let token = localStorage.getItem("ss_cms_token") || "";
   let store = {}; // in-memory cache of all collections + singletons
 
