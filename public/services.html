@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body data-page="services">
   <header id="site-header"></header>
@@ -72,7 +72,8 @@
         const media = `<div class="split-media" style="aspect-ratio:4/3">${SS.photo(x.image, x.title)}</div>`;
         const text = `<div><span class="eyebrow">Service ${1 + i}</span><h2 style="margin:1rem 0 1rem">${x.title}</h2><p style="margin-bottom:1.3rem">${x.full}</p><div>${x.points.map(p => `<div class="check">${SS.icon("check")}<span>${p}</span></div>`).join("")}</div><div style="margin-top:1.6rem"><a class="btn btn-primary" href="contact.html">Request this service</a></div></div>`;
         const flip = i % 2 === 1;
-        return `<div id="${x.slug}" class="split reveal" style="margin-bottom:clamp(3rem,7vw,6rem);scroll-margin-top:100px">${flip ? media + text : text + media}</div>`;
+        const gap = i === D.services.length - 1 ? "0" : "clamp(1.5rem,3.5vw,2.75rem)";
+        return `<div id="${x.slug}" class="split reveal" style="margin-bottom:${gap};scroll-margin-top:100px">${flip ? media + text : text + media}</div>`;
       }).join(""));
     };
   </script>

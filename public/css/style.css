@@ -49,7 +49,7 @@
   --container: 1280px;
   --container-narrow: 1080px;   /* readable width for text-led sections */
   --gutter: clamp(1.1rem, 4vw, 2.5rem);
-  --section-y: clamp(2.5rem, 5vw, 4.5rem);
+  --section-y: clamp(1.1rem, 1.8vw, 1.4rem);
 
   --r-sm: 12px;
   --r-md: 18px;
@@ -128,7 +128,7 @@ strong { color: var(--ink); font-weight: 700; }
 .container-wide { max-width: var(--container); }
 .container-narrow { max-width: var(--container-narrow); }
 .section { padding-block: var(--section-y); }
-.section-tight { padding-block: clamp(1.9rem, 3.5vw, 3.25rem); }
+.section-tight { padding-block: clamp(.9rem, 1.5vw, 1.2rem); }
 .bg-porcelain { background: var(--porcelain); }
 .bg-ink { background: var(--brand-ink); color: #DCE3FB; }
 .bg-ink h1, .bg-ink h2, .bg-ink h3 { color: #fff; }
@@ -163,10 +163,10 @@ strong { color: var(--ink); font-weight: 700; }
 .bg-ink .eyebrow { color: var(--brand-soft); }
 .bg-ink .eyebrow::before { box-shadow: inset 0 0 0 3px rgba(11,20,55,.35); }
 
-.section-head { max-width: 680px; margin-bottom: clamp(1.25rem, 2.4vw, 2rem); }
+.section-head { max-width: 680px; margin-bottom: clamp(1rem, 1.8vw, 1.5rem); }
 .section-head.center { margin-inline: auto; text-align: center; }
-.section-head .eyebrow { margin-bottom: 1rem; }
-.section-head p { margin-top: 1rem; font-size: var(--fs-lead); }
+.section-head .eyebrow { margin-bottom: .7rem; }
+.section-head p { margin-top: .7rem; font-size: var(--fs-lead); }
 
 /* ---------- Buttons ---------- */
 .btn {

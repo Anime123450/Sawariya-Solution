@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body data-page="home">
   <header id="site-header"></header>
@@ -36,7 +36,7 @@
     <!-- CLIENTS -->
     <section class="section-tight bg-porcelain">
       <div class="container">
-        <p class="eyebrow" style="justify-content:center;display:flex;margin-bottom:1.8rem">Trusted by teams across India</p>
+        <p class="eyebrow" style="justify-content:center;display:flex;margin-bottom:1rem">Trusted by teams across India</p>
         <div class="logo-grid" id="clientLogos"></div>
       </div>
     </section>
@@ -88,14 +88,7 @@
           <p>Battle-tested platforms we tailor to your business — no building from scratch.</p>
         </div>
         <div class="grid cols-3" id="productsGrid"></div>
-        <div style="text-align:center;margin-top:2.5rem"><a class="btn btn-ghost" href="products.html">View all products</a></div>
-      </div>
-    </section>
-
-    <!-- MILESTONES -->
-    <section class="bg-porcelain" style="padding-block:clamp(1.6rem,3vw,2.4rem)">
-      <div class="container">
-        <div class="grid cols-4" id="statsGrid"></div>
+        <div style="text-align:center;margin-top:1.6rem"><a class="btn btn-ghost" href="products.html">View all products</a></div>
       </div>
     </section>
 
@@ -108,7 +101,7 @@
           <p>Hospitals, hotels, retailers, and security firms — here's a slice of what we've shipped.</p>
         </div>
         <div class="grid cols-3" id="projectsGrid"></div>
-        <div style="margin-top:2.5rem"><a class="btn-link" href="portfolio.html">Explore the full portfolio <span class="arr"></span></a></div>
+        <div style="margin-top:1.6rem"><a class="btn-link" href="portfolio.html">Explore the full portfolio <span class="arr"></span></a></div>
       </div>
     </section>
 
@@ -138,7 +131,7 @@
     <!-- TECHNOLOGY PARTNERS -->
     <section class="section-tight bg-porcelain" id="partners" style="scroll-margin-top:80px">
       <div class="container">
-        <div class="section-head center" style="margin-bottom:2.4rem">
+        <div class="section-head center" style="margin-bottom:1.5rem">
           <span class="eyebrow">Built on trusted technology</span>
           <h2>The platforms we build with</h2>
         </div>
@@ -184,7 +177,6 @@
       SS.mount("servicesGrid", D.services.map((x, i) => SS.serviceCard(x, i, i % 3)).join(""));
       SS.mount("productsGrid", D.products.slice(0, 3).map((x, i) => SS.productCard(x, i % 3)).join(""));
       SS.mount("projectsGrid", D.projects.slice(0, 6).map((x, i) => SS.projectCard(x, i % 3)).join(""));
-      SS.mount("statsGrid", D.milestones.map((m, i) => SS.statCard(m, i % 4)).join(""));
       SS.mount("testimonialsGrid", D.testimonials.map((x, i) => SS.testimonialCard(x, i % 3)).join(""));
       SS.mount("blogsGrid", D.blogs.slice(0, 3).map((x, i) => SS.blogCard(x, i % 3)).join(""));
       SS.mount("valuesWrap", D.values.map((v, i) =>
