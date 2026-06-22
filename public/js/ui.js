@@ -43,6 +43,13 @@
     linkedin: s('<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 17v-7" stroke="#fff"/>', {}),
     youtube: s('<rect x="3" y="6" width="18" height="12" rx="4"/><path d="m11 9.5 4 2.5-4 2.5Z" fill="currentColor" stroke="none"/>'),
     whatsapp: s('<path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.4-1.2A9 9 0 1 0 12 3Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.6 1-1l-1.5-1-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1-1.5c-.4 0-1 .5-1 1Z" fill="currentColor" stroke="none"/>'),
+    // industry markers
+    health: s('<path d="M12 20.5S4.5 15.5 4.5 9.8A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7.5 1.8c0 5.7-7.5 10.7-7.5 10.7Z"/><path d="M7.5 11.5h2L11 9l2 5 1-2.5h2.5"/>'),
+    dining: s('<path d="M6 3v7a2 2 0 0 0 4 0V3M8 10v11M17 3c-1.6 0-2.6 2.2-2.6 5.2 0 2.4 1 3.6 2.6 3.8V21"/>'),
+    retail: s('<path d="M6 8.5h12l-.8 11a1 1 0 0 1-1 1H7.8a1 1 0 0 1-1-1L6 8.5Z"/><path d="M9 8.5a3 3 0 0 1 6 0"/>'),
+    building: s('<rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h2M14 15h1M10.5 21v-2.5h3V21"/>'),
+    education: s('<path d="m12 4 9.5 4.5L12 13 2.5 8.5 12 4Z"/><path d="M6.5 10.5V16c0 1.2 2.6 3 5.5 3s5.5-1.8 5.5-3v-5.5"/>'),
+    logistics: s('<path d="M3 6.5h11v9.5H3zM14 9.5h3.4L21 13v3h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17.5" cy="18" r="1.7"/>'),
   };
   SS.icon = (n) => SS.icons[n] || "";
 
@@ -277,6 +284,18 @@
     const inner = (logo ? `<img src="${logo}" alt="${name}" width="44" height="44">` : "") + `<span class="pl-name">${name}</span>`;
     return `<a class="partner-logo reveal" href="${url}" target="_blank" rel="noopener" title="${name}" aria-label="${name}">${inner}</a>`;
   };
+
+  /* ---------- Industry card (icon-led "who we build for") ---------- */
+  SS.industryCard = (x, d = 0) => `
+    <div class="industry-card reveal" data-d="${d}">
+      <span class="ind-ico">${SS.icon(x.icon)}</span>
+      <div class="ind-body">
+        <h3>${x.title}</h3>
+        <p>${x.short}</p>
+        ${x.tags && x.tags.length ? `<div class="ind-tags">${x.tags.map((t) => `<span>${t}</span>`).join("")}</div>` : ""}
+      </div>
+      <span class="ind-arrow">${SS.icon("arrowUpRight")}</span>
+    </div>`;
 
   /* ---------- Hero banner (rotating slideshow) ---------- */
   SS.buildBanner = function (elId, banner) {

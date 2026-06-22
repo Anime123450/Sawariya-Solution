@@ -479,6 +479,39 @@ strong { color: var(--ink); font-weight: 700; }
 .partner-logo:hover img { filter: grayscale(0); opacity: 1; }
 .partner-logo .pl-name { font-family: var(--font-display); font-weight: 700; font-size: .9rem; color: var(--slate); }
 
+/* ---------- Industries grid (icon-led "who we build for") ---------- */
+.industry-card {
+  display: flex; align-items: flex-start; gap: 1.05rem;
+  background: #fff; border: 1px solid var(--mist); border-radius: var(--r-lg);
+  padding: 1.45rem 1.5rem; position: relative; overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.industry-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--peacock); transform: scaleY(0); transform-origin: top; transition: transform var(--t);
+}
+.industry-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.industry-card:hover::before { transform: scaleY(1); }
+.industry-card .ind-ico {
+  width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center;
+  background: var(--peacock-soft); color: var(--brand);
+  transition: background var(--t), color var(--t);
+}
+.industry-card:hover .ind-ico { background: var(--peacock); color: #fff; }
+.industry-card .ind-ico svg { width: 26px; height: 26px; }
+.industry-card .ind-body { flex: 1; min-width: 0; }
+.industry-card h3 { font-size: 1.1rem; margin-bottom: .35rem; }
+.industry-card p { font-size: var(--fs-sm); margin-bottom: .8rem; }
+.industry-card .ind-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.industry-card .ind-tags span {
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700;
+  color: var(--brand); background: var(--cloud); padding: .26rem .58rem; border-radius: var(--r-pill);
+}
+.industry-card .ind-arrow { position: absolute; top: 1.2rem; right: 1.2rem; color: var(--mist); transition: color var(--t), transform var(--t-fast); }
+.industry-card:hover .ind-arrow { color: var(--brand); transform: translate(2px, -2px); }
+.industry-card .ind-arrow svg { width: 18px; height: 18px; }
+
 /* ---------- CTA band ---------- */
 .cta-band { position: relative; border-radius: var(--r-xl); padding: clamp(2rem, 4.5vw, 3.4rem); overflow: hidden; background: var(--brand-ink); color: #fff; }
 .cta-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 85% 20%, rgba(58,106,224,.45), transparent 52%), radial-gradient(circle at 10% 90%, rgba(27,69,196,.6), transparent 55%); }

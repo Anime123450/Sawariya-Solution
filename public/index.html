@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body data-page="home">
   <header id="site-header"></header>
@@ -50,6 +50,18 @@
           <p>From the first wireframe to 24/7 support, we cover the whole stack so you never have to coordinate five vendors.</p>
         </div>
         <div class="grid cols-3" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES WE SERVE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Industries we serve</span>
+          <h2>Software shaped to your industry</h2>
+          <p>From hospitals to hotels to high streets — we already know the workflows, the compliance, and the quirks of your line of business.</p>
+        </div>
+        <div class="grid cols-3 industry-grid" id="industriesGrid"></div>
       </div>
     </section>
 
@@ -161,8 +173,8 @@
 
   <footer id="site-footer"></footer>
 
-  <script src="js/data.js"></script>
-  <script src="js/ui.js"></script>
+  <script src="js/data.js?v=2"></script>
+  <script src="js/ui.js?v=2"></script>
   <script>
     window.SS_PAGE = function () {
       const D = window.SS_DATA;
@@ -175,6 +187,7 @@
       SS.mount("clientLogos", D.clients.map(SS.clientLogo).join(""));
       SS.mount("partnerLogos", D.partners.map(SS.partnerLogo).join(""));
       SS.mount("servicesGrid", D.services.map((x, i) => SS.serviceCard(x, i, i % 3)).join(""));
+      SS.mount("industriesGrid", (D.industries || []).map((x, i) => SS.industryCard(x, i % 3)).join(""));
       SS.mount("productsGrid", D.products.slice(0, 3).map((x, i) => SS.productCard(x, i % 3)).join(""));
       SS.mount("projectsGrid", D.projects.slice(0, 6).map((x, i) => SS.projectCard(x, i % 3)).join(""));
       SS.mount("testimonialsGrid", D.testimonials.map((x, i) => SS.testimonialCard(x, i % 3)).join(""));

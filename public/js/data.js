@@ -207,6 +207,16 @@ window.SS_DATA = {
     { step: "04", title: "Launch & support", body: "We ship, monitor, and stay on call — your launch is the start, not the end." },
   ],
 
+  // Industries we serve — grounded in Sawariya's real client verticals
+  industries: [
+    { icon: "health", title: "Healthcare & Clinics", short: "Hospital management, OPD, pharmacy, and appointment booking for hospitals and clinics.", tags: ["HMS", "Booking", "Web"] },
+    { icon: "dining", title: "Hospitality & Restaurants", short: "Websites, digital menus, online ordering, and POS billing for hotels and restaurants.", tags: ["POS", "Ordering", "Web"] },
+    { icon: "retail", title: "Retail & E-commerce", short: "Online stores, catalogs, payment gateways, and inventory for shops and brands.", tags: ["E-commerce", "Inventory"] },
+    { icon: "building", title: "Real Estate & Security", short: "Corporate websites, lead capture, and CRM for services and security firms.", tags: ["CRM", "Branding"] },
+    { icon: "education", title: "Education & Institutes", short: "School & institute ERP — admissions, fees, attendance, and parent communication.", tags: ["ERP", "Portals"] },
+    { icon: "logistics", title: "Trading & Logistics", short: "ERP, GST billing, inventory, and distribution systems for traders and suppliers.", tags: ["ERP", "Billing"] },
+  ],
+
   // page-level imagery (keyword photos; swap freely or manage in the CMS)
   images: {},
 };
