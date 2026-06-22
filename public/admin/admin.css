@@ -21,7 +21,8 @@ body.admin { background: var(--porcelain); overflow-x: hidden; }
   display: flex; flex-direction: column; position: sticky; top: 0; height: 100dvh;
   z-index: 50; transition: transform var(--t); box-shadow: 1px 0 0 rgba(255,255,255,.05);
 }
-.admin-side .side-brand { display: flex; align-items: center; gap: .7rem; padding: 1.3rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+.admin-side .side-brand { display: flex; align-items: center; gap: .75rem; padding: 1.25rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+.admin-side .side-brand .logo-side { height: 46px; width: auto; max-width: 168px; object-fit: contain; }
 .admin-side .side-brand b { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1.05rem; }
 .admin-side .side-brand span { font-family: var(--font-mono); font-size: .54rem; letter-spacing: .3em; color: #6FE3D2; display: block; }
 /* scrollable nav with the scrollbar hidden */
