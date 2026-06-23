@@ -2,113 +2,207 @@
 
 <img src="public/images/logo.png" alt="Sawariya Solution" width="96" />
 
-# Sawariya Solution
+# Sawariya Solution — Website & Admin CMS
 
-Marketing website **and** a database-backed CMS for a Vadodara IT studio.
-A plain HTML/CSS/JS frontend on top of a Laravel + MySQL API.
+A marketing website **and** a database-backed content management system (CMS)
+for a Vadodara-based IT studio. A plain HTML/CSS/JS frontend powered by a
+**Laravel + SQLite** backend with a REST API and an admin panel.
 
-![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel_13-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP_8.3-777BB4?style=flat-square&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Responsive](https://img.shields.io/badge/responsive-mobile_→_desktop-1C3FBF?style=flat-square)
 
 </div>
 
 ---
 
-## 🦚 About
+## 1. Project Overview
 
-Sawariya Solution is a small IT studio that builds web, software, mobile and cloud products for businesses across India. This is their site.
+**Sawariya Solution** is a small IT studio in Vadodara that builds web, software,
+mobile, and cloud products for businesses across India. This project is their
+**official website** together with a built-in **admin panel (CMS)** to manage all
+the site content.
 
-The whole thing leans into one idea: *Sawariya* is a name for Krishna, and his peacock feather is the brand mark — so the feather's "eye" turns up as the little marker next to every section heading. Royal blue on white, generous spacing, nothing that screams stock template.
+- The **frontend** is framework-free — one stylesheet and two small scripts —
+  giving a fast, responsive, fully fluid marketing site.
+- Behind it sits a small **Laravel REST API** that stores all content in a
+  **SQLite database**, so the admin panel edits real data (not just a browser's
+  local storage).
+- If the API is ever unavailable, the site automatically falls back to its
+  bundled default content and still renders correctly.
 
-The frontend is deliberately framework-free — one stylesheet and two small scripts. Behind it sits a small **Laravel API** that stores all the content in **MySQL**, so the admin panel edits real data instead of a browser's localStorage. If the API is ever unavailable, the site falls back to its bundled defaults and still renders.
+---
 
-## 🚀 Getting started
+## 2. Technology Used
 
-You need **PHP 8.3+, Composer and MySQL** (Laragon/XAMPP on Windows bundle all three).
+| Layer | Technology |
+|-------|-----------|
+| Backend framework | **Laravel 13** (PHP **8.3+**) |
+| API authentication | **Laravel Sanctum** (Bearer token) |
+| Database | **SQLite** (file-based) — MySQL optional |
+| Frontend | **HTML5, CSS3, Vanilla JavaScript** (no framework) |
+| Fonts | Plus Jakarta Sans, Space Mono (Google Fonts) |
+| Package manager | **Composer** |
+| Local server | `php artisan serve` (or `start.bat`) |
+
+---
+
+## 3. Installation Steps
+
+You need **PHP 8.3+** and **Composer**. On Windows, **Laragon** or **XAMPP**
+bundles both. (No separate database server is required — the project uses SQLite.)
 
 ```bash
-composer install                     # install PHP dependencies
-cp .env.example .env                 # then set your DB creds in .env
+# 1. Install PHP dependencies
+composer install
+
+# 2. Create your environment file
+cp .env.example .env          # On Windows: copy .env.example .env
+
+# 3. Generate the application key
 php artisan key:generate
 
-# create the database once (any MySQL client):  CREATE DATABASE sawariya;
-php artisan migrate --seed           # build tables + load the site content
-
-php artisan serve                    # → http://localhost:8000
+# 4. Create the database, tables, content, and admin user
+php artisan migrate --seed
 ```
 
-Open **http://localhost:8000** for the site and **http://localhost:8000/admin/** for the CMS.
+That's it — the project is ready to run.
 
-> **Just want to look at the frontend?** Serve the `public/` folder statically
-> (`python -m http.server 3000 --directory public`). The pages render from their
-> bundled defaults — but the admin needs the API running to log in and save.
+---
 
-## 🛠️ Admin panel (CMS)
+## 4. How to Run the Project
 
-Go to **`/admin/`** and sign in with **`admin` / `admin`** (seeded user). Append `?demo=1` to auto-login for a quick look.
+**Easiest way (Windows):**
 
-You can edit basically everything on the site — banner slides, services, products, portfolio, testimonials, blog posts, job openings, client + partner logos, milestones, social links, contact info, footer and SEO. It's schema-driven: each collection is described once in `admin/admin.js` and the table + form UI builds itself from that.
+> **Double-click `start.bat`** in the project folder. A window opens and runs the
+> server — **keep that window open** while you use the site. Close it to stop.
 
-Every image/logo/photo field has a **live preview** and an **Upload** button (files land in `public/images/uploads/`). Saves go straight to the database through the API, so a change shows up on the public site on its next load.
-
-## 🔌 API
-
-Token auth via Laravel Sanctum. Public reads need no auth; everything else needs a Bearer token from `/api/login`.
-
-| Method | Endpoint | Auth | Purpose |
-|--------|----------|:----:|---------|
-| `GET` | `/api/content` | — | All site content for the frontend |
-| `POST` | `/api/login` | — | `{username, password}` → `{token, user}` |
-| `GET` | `/api/collections/{c}` | ✓ | List items in a collection |
-| `POST` | `/api/collections/{c}` | ✓ | Create an item |
-| `PUT` | `/api/collections/{c}/{id}` | ✓ | Update an item |
-| `DELETE` | `/api/collections/{c}/{id}` | ✓ | Delete an item |
-| `GET`/`PUT` | `/api/singletons/{key}` | ✓ | Read / update a single record (settings, contact, footer) |
-| `POST` | `/api/uploads` | ✓ | Upload an image → `{path}` |
-
-Content is stored flexibly: list collections live in an **`entries`** table (one JSON row per item), single records in a **`singletons`** table — which mirrors the schema-driven admin nicely.
-
-## 🎨 Design
-
-- **Type** — Space Grotesk (headings), Hanken Grotesque (body), Space Mono (labels & numbers)
-- **Colour** — royal peacock blue `#1B45C4` on white, with a blue gradient for accents
-- **Layout** — content sits in a 1280px shell; the hero banner and tinted sections run full-bleed
-- **Details** — fully responsive, visible keyboard focus, respects `prefers-reduced-motion`
-
-## 📂 Project layout
-
-```text
-sawariya-solution/
-├─ app/
-│  ├─ Http/Controllers/Api/   # Auth, Content, Collection, Singleton, Upload
-│  └─ Models/                 # Entry, Singleton, User
-├─ routes/
-│  ├─ api.php                 # the REST API
-│  └─ web.php                 # serves the static site + /admin
-├─ database/
-│  ├─ migrations/             # entries, singletons, users, sanctum…
-│  └─ seeders/                # ContentSeeder + data/content.json (site content)
-├─ public/                    # ← the frontend (served by Laravel)
-│  ├─ index.html  about.html  services.html  …  contact.html
-│  ├─ css/style.css           # the whole design system
-│  ├─ js/data.js              # bundled content defaults (fallback)
-│  ├─ js/ui.js                # header, footer, banner, cards, API loader
-│  ├─ images/                 # banner · services · products · portfolio · people · partners
-│  └─ admin/                  # the CMS (index.html, admin.css, admin.js)
-└─ scripts/                   # dump-content.mjs (regenerate seed data from data.js)
-```
-
-## 🔁 Re-seeding
-
-The seed content is generated from the frontend defaults. To refresh it after editing `public/js/data.js`:
+**Or from the terminal:**
 
 ```bash
-node scripts/dump-content.mjs        # rewrites database/seeders/data/content.json
-php artisan db:seed --force          # reloads the database from it
+php artisan serve
 ```
+
+Then open in your browser:
+
+| Page | URL |
+|------|-----|
+| Public website | **http://localhost:8000/** |
+| Admin panel (CMS) | **http://localhost:8000/admin/** |
+
+> **Frontend-only preview (optional):** you can serve the `public/` folder
+> statically (e.g. VS Code *Live Server* on port 3000). The pages render from
+> their bundled defaults, but the **admin still needs the backend running** on
+> port 8000 to log in and save.
+
+---
+
+## 5. Database Setup
+
+This project uses **SQLite by default** — a single file, no database server to
+install or start.
+
+```bash
+php artisan migrate --seed
+```
+
+This command:
+- creates the database file `database/database.sqlite`,
+- builds all tables (users, entries, singletons, tokens, etc.),
+- loads all site content from `database/seeders/data/content.json`,
+- creates the **admin user** (`admin` / `admin`).
+
+**To reset / reload the database:**
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+**To use MySQL instead of SQLite (optional):** in `.env` set
+`DB_CONNECTION=mysql` with your host/port/database/username/password, create a
+database named `sawariya`, then run `php artisan migrate --seed`.
+
+---
+
+## 6. Configuration / Important Files
+
+| File / Folder | Purpose |
+|---------------|---------|
+| `.env` | Environment config (database, app key, sessions). **Created from `.env.example`.** |
+| `start.bat` | One-click launcher for the backend server (Windows). |
+| `routes/web.php` | Serves the public site and the `/admin` panel. |
+| `routes/api.php` | The REST API (login, content, collections, singletons, uploads). |
+| `app/Http/Controllers/Api/` | API controllers (Auth, Content, Collection, Singleton, Upload). |
+| `app/Models/` | Eloquent models — `Entry`, `Singleton`, `User`. |
+| `database/seeders/` | `ContentSeeder` + `data/content.json` (initial site content). |
+| `database/database.sqlite` | The SQLite database file (created by migrate). |
+| `public/` | **The frontend** — all `*.html` pages, CSS, JS, images. |
+| `public/css/style.css` | The entire design system (colours, type, layout). |
+| `public/js/data.js` | Bundled content defaults (offline fallback). |
+| `public/js/ui.js` | UI engine — header, footer, banner, cards, API loader. |
+| `public/admin/admin.js` | The schema-driven admin/CMS engine. |
+
+---
+
+## 7. Features / Modules
+
+**Public website**
+- **Home** — rotating hero banner, key stats, client logos, services,
+  **Industries We Serve**, why-us, process, products, portfolio, testimonials,
+  blog and a call-to-action.
+- **About, Services, Products, Portfolio, Blog, Careers, Contact** pages.
+- Fully **responsive** and **fluid** — the whole layout scales with the screen
+  size and browser zoom; respects reduced-motion and keyboard focus.
+
+**Admin Panel (CMS)** — `/admin/`
+- Schema-driven editor for **every** part of the site: banner slides, services,
+  products, portfolio, testimonials, blog posts, job openings, clients,
+  partners, milestones, social links, settings/SEO, contact info and footer.
+- **Image uploads** with live preview (saved to `public/images/uploads/`).
+- Changes are saved to the database and appear on the public site on its next load.
+
+**Backend / API**
+- REST API with **Sanctum token authentication** (public reads need no auth).
+- Flexible content storage: list items in an `entries` table, single records in
+  a `singletons` table.
+- Graceful **offline fallback** to bundled defaults if the API is unreachable.
+
+---
+
+## 8. Things to Update After Setup
+
+- ✅ Run **`php artisan key:generate`** if you haven't (sets `APP_KEY`).
+- 🔑 **Change the admin password** — it ships as `admin` / `admin` for demo use only.
+- 📝 Update the real business content through the **admin panel** (or in `public/js/data.js`).
+- ☎️ Update **contact details, social links and SEO** in the admin **Settings/Contact** sections.
+- 🚀 For production: set `APP_ENV=production`, `APP_DEBUG=false`, and configure a
+  real database/mail service if required.
+
+---
+
+## 9. Admin Login Details
+
+| Field | Value |
+|-------|-------|
+| Admin URL | **http://localhost:8000/admin/** |
+| Username | **admin** |
+| Password | **admin** |
+
+> The backend server must be running (use **`start.bat`** or `php artisan serve`).
+> Tip: add `?demo=1` to the admin URL to auto-fill the demo login.
+
+---
+
+## 👤 Developer / Submission Details
+
+| Field | Detail |
+|-------|--------|
+| **Full Name** | Animesh Sharma |
+| **Contact Number** | 8791196138 |
+| **College Name** | University of Petroleum and Energy Studies (UPES) |
+| **Student ID** | 590014814 |
+| **Email** | animeshsharmaup26@gmail.com |
 
 ---
 
