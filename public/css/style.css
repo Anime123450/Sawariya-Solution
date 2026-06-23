@@ -635,7 +635,7 @@ strong { color: var(--ink); font-weight: 700; }
 .modal-hero .photo { position: absolute; inset: 0; }
 
 /* ---------- Toast ---------- */
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120%); background: var(--brand-ink); color: #fff; padding: .9rem 1.4rem; border-radius: var(--r-pill); box-shadow: var(--shadow-lg); z-index: 300; transition: transform var(--t); display: flex; gap: .6rem; align-items: center; font-weight: 600; }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(calc(100% + 40px)); background: var(--brand-ink); color: #fff; padding: .9rem 1.4rem; border-radius: var(--r-pill); box-shadow: var(--shadow-lg); z-index: 300; transition: transform var(--t); display: flex; gap: .6rem; align-items: center; font-weight: 600; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 .toast svg { width: 20px; height: 20px; color: var(--brand-soft); }
 
