@@ -4,6 +4,8 @@
 
 # Sawariya Solution — Website & Admin CMS
 
+A student project from my internship at Sawariya Solution (2026).
+
 A marketing website **and** a database-backed content management system (CMS)
 for a Vadodara-based IT studio. A plain HTML/CSS/JS frontend powered by a
 **Laravel + SQLite** backend with a REST API and an admin panel.
@@ -20,12 +22,12 @@ for a Vadodara-based IT studio. A plain HTML/CSS/JS frontend powered by a
 ## 1. Project Overview
 
 **Sawariya Solution** is a small IT studio in Vadodara that builds web, software,
-mobile, and cloud products for businesses across India. This project is their
-**official website** together with a built-in **admin panel (CMS)** to manage all
+mobile, and cloud products for businesses across India. This project is a
+**website** for them together with a built-in **admin panel (CMS)** to manage all
 the site content.
 
 - The **frontend** is framework-free — one stylesheet and two small scripts —
-  giving a fast, responsive, fully fluid marketing site.
+  and the layout is responsive.
 - Behind it sits a small **Laravel REST API** that stores all content in a
   **SQLite database**, so the admin panel edits real data (not just a browser's
   local storage).
@@ -152,8 +154,8 @@ database named `sawariya`, then run `php artisan migrate --seed`.
   **Industries We Serve**, why-us, process, products, portfolio, testimonials,
   blog and a call-to-action.
 - **About, Services, Products, Portfolio, Blog, Careers, Contact** pages.
-- Fully **responsive** and **fluid** — the whole layout scales with the screen
-  size and browser zoom; respects reduced-motion and keyboard focus.
+- **Responsive** layout — scales with the screen size and browser zoom;
+  respects reduced-motion and keyboard focus.
 
 **Admin Panel (CMS)** — `/admin/`
 - Schema-driven editor for **every** part of the site: banner slides, services,
@@ -191,18 +193,6 @@ database named `sawariya`, then run `php artisan migrate --seed`.
 
 > The backend server must be running (use **`start.bat`** or `php artisan serve`).
 > Tip: add `?demo=1` to the admin URL to auto-fill the demo login.
-
----
-
-## 👤 Developer / Submission Details
-
-| Field | Detail |
-|-------|--------|
-| **Full Name** | Animesh Sharma |
-| **Contact Number** |  |
-| **College Name** | University of Petroleum and Energy Studies (UPES) |
-| **Student ID** |  |
-| **Email** |  |
 
 ---
 
